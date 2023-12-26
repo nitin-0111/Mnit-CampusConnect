@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+#singleProduct {
+  /* background-color: #cce7d0; */
+  /* background-color: #e8f6ea; */
+  background-color: #f4f2ee;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Spartan", sans-serif;
+}
+
+h2 {
+  font-size: 46px;
+  line-height: 54px;
+  color: #222;
+}
+
+hr {
+  border-width: 2px; 
+  margin: 20px 0;
+}
+
+.section-p1 {
+  padding: 40px 80px;
+}
+#prodetails {
+  display: flex;
+  margin-top: 20px;
+}
+
+#prodetails .single-pro-image {
+  width: 40%;
+  margin-right: 50px;
+  border: 4px solid #3498db;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* border-radius: 50px; */
+}
+
+.small-img-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+}
+
+.small-img-col {
+  flex-basis: 24%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.small-img {
+  width: 100%;
+  object-fit: cover;
+}
+
+#prodetails .single-pro-details {
+  width: 50%;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 4px solid #3498db;
+}
+
+#prodetails .single-pro-details h2 {
+  font-size: 26px;
+}
+
+#MainImg {
+  height: 500px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: object-fit 5s ease;
+}
+#MainImg:hover {
+  object-fit: contain;
+}
