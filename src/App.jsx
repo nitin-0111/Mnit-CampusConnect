@@ -27,11 +27,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route  path="/" element={<ProtectedRoute> <Home /> </ProtectedRoute>}>
-          <Route path="singleProduct" element={<SingleProduct />} />
+          <Route index path="/" element={<Products />} />
           <Route path="addProduct" element={<AddProduct />} />
-          <Route path="products" element={<Products />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          
+          <Route path="singleProduct" element={<SingleProduct />} />
           <Route path="singleProduct/:productId" element={<SingleProduct />} />
+          <Route path="dashboard" element={<Dashboard />} />
 
         </Route>
 

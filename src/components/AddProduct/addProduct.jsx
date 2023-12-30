@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
 import { Avatar, Button, Paper } from "@mui/material";
@@ -196,7 +196,7 @@ function AddProduct() {
           disabled={disable}
           type="submit"
         >
-          Add Product
+         { !disable? "Add Product": <CircularProgress color="inherit" />}
         </Button>
       </form>
     </Paper>

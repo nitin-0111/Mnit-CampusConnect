@@ -85,7 +85,7 @@ const SingleProduct = () => {
               <hr />
               {user && <>
                 <Button variant="contained" color="primary" onClick={handleInterestClick}>
-                  Interested in Buy
+                  Interested To Buy
                 </Button>
 
                 <Dialog open={openDialog} onClose={handleCloseDialog}>
