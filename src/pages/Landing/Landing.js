@@ -103,16 +103,28 @@ const Landing = () => {
           <div className="content-wrapper">
             <div className="rules-list">
               <ul style={{ listStyleType: 'disc' }}>
-                <li className="rule">This site is only for our college so make sure you register using the MNIT mail Id only.</li>
+                <li className="rule">This site is only for our college so make sure you register using the MNIT mail Id only.
+                </li>
                 <hr />
                 <li className="rule">
-                  Provide valid contact details during registration else nobody would be able to contact you.</li>
+                  Provide valid contact details during registration else nobody would be able to contact you for your product.
+                </li>
                 <hr />
                 <li className="rule">
-                  Do not post any irrelevant post else the user may get deleted.</li>
+                  Once registered, please check your email for the verification of the registered mail Id.
+                </li>
                 <hr />
-                <li className="rule"
-                >For better experience use desktop.</li>
+                <li className="rule">
+                  Do not post any irrelevant post else the user may get deleted.
+                </li>
+                <hr />
+                <li className="rule">
+                  For the best experience, use a computer or switch to desktop mode on mobile.
+                </li>
+                <hr />
+                <li className="rule">
+                  Once you find your owner, then do mail about it to us at <b>campusconnect.social@gmail.com</b>  to remove it from the website.
+                </li>
               </ul>
             </div>
           </div>

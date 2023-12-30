@@ -26,7 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ProtectedRoute> <Home /> </ProtectedRoute>}>
+        <Route  path="/" element={<ProtectedRoute> <Home /> </ProtectedRoute>}>
           <Route path="singleProduct" element={<SingleProduct />} />
           <Route path="addProduct" element={<AddProduct />} />
           <Route path="products" element={<Products />} />

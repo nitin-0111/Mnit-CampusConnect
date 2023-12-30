@@ -10,24 +10,25 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { useDispatch } from "react-redux";
-import { logoutUser } from "../../redux/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 import NavbarImage from "../../assets/img/CampusConnect-logos/CampusConnect-logos_white.png";
 import NavbarAvatar from "../Navbar/NavbarAvatar";
 import "../Navbar/Navbar.css";
-import { getUserFromLocalStorage } from "../../redux/localStorage";
+
 import { BASE_URL } from "../../env";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import { logoutUser } from "../../features/user/userSlice";
 
 function ResponsiveAppBar() {
   const dispatch = useDispatch();
-
+  const { isLoading, user } = useSelector((store) => store.auth);
   // ************************** Data fetching for NavbarLogo Icons **************************
-  const userFromLocalStorage = getUserFromLocalStorage();
-  const userId = userFromLocalStorage && userFromLocalStorage.user ? userFromLocalStorage.user.userId : null;
+ 
+  const userId = user.userId
   const [userData, setUserData] = useState({
     Name: "",
   });

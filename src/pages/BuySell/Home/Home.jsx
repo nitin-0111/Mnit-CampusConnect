@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Filter from '../Filter/Filter.jsx'
 import Products from '../Products/Products'
 import { Box, Stack } from '@mui/material'
-import { BASE_URL } from '../../../env.js'
-import axios from 'axios'
+
+import customFetch from '../../../utils/axios.js'
+// import axios from 'axios'
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -12,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get(BASE_URL + '/Product/allProducts', {
+        const response = await customFetch.get(  '/Product/allProducts', {
           params: {
             categories: categories,
             sortBy: sortBy,

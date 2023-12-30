@@ -102,6 +102,7 @@ header {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  align-items: center;
 }
 .section-title {
   color: #3498db;
@@ -185,6 +186,14 @@ header {
     display: flex;
     flex-direction: column;
   }
+  .maintheme {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .content-wrapper {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -207,12 +216,5 @@ header {
   .contributor-item {
     margin: 10px;
   }
-  .maintheme {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .content-wrapper {
-    width: 90%;
-  }
+  
 }

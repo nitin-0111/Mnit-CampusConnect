@@ -1,61 +1,76 @@
 import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
-import { getUserFromLocalStorage } from '../../redux/localStorage';
-import axios from 'axios';
-import { BASE_URL } from '../../env';
 import ProfileAvatar from './ProfileAvatar';
-import Error from '../Auth/Warning/Error';
+
+import { customToast } from '../../components/Toaster/CustomToast';
+import Spinner from '../Auth/Warning/Spinner';
+import { useSelector } from 'react-redux';
+import customFetch from '../../utils/axios';
+
+
 
 const Dashboard = () => {
-  const userFromLocalStorage = getUserFromLocalStorage();
-  // Check if user is defined before destructure
-  const userId = userFromLocalStorage && userFromLocalStorage.user ? userFromLocalStorage.user.userId : null;
-  const [userData, setUserData] = useState(
-    {
-      userName: '',
-      Name: '',
-      Mobile: '',
-      Branch: '',
-      Email: '',
-      Year: '',
-    }
-  );
-  const [error, setError] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const { isLoading, user } = useSelector((store) => store.auth);
+  const userId=user.userId;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(BASE_URL + `/auth/myInfo/${userId}`);
+        if (!userId) {
+          customToast("error", { msg: 'Error in Fetching Your Data. Please ReLogin' });
+          return;
+        }
+        const response = await customFetch.get(  `/auth/myInfo/${userId}`);
         setUserData(response.data);
-      }
-      catch (error) {
-        setError(error);
+      } catch (error) {
+        customToast("error", { msg: 'Error in Fetching Your Data. Please ReLogin' });
+        // Handle error or set error state
       }
     };
+  if(!userData)
     fetchData();
   }, [userId]);
+
   return (
     <div>
-      {
-        error ?
-          <div>
-             <Error message="Error in Fetching Your Data Please ReLogin"/>
-          </div> :
-          <>
-            <div className="profile-container">
-              <div className="profile-image">
-                <ProfileAvatar fullName= {userData.Name} />
-              </div>
-              <div className="profile-details">
-                <div><strong>Name:</strong> {userData.Name}</div>
-                <div><strong>College Id:</strong> {userData.Email}</div>
-                <div><strong>Branch:</strong> {userData.Branch}</div>
-                <div><strong>Year:</strong>{userData.Year} </div>
-                <div><strong>UserName:</strong> {userData.userName}</div>
-                <div><strong>Contact:</strong> {userData.Mobile}</div>
-                <button className="edit-button">Edit</button>
-              </div>
+      {userData ? (
+        <div className="profile-container">
+          <div className="profile-image">
+            <ProfileAvatar fullName={userData.Name} />
+          </div>
+          <div className="profile-details">
+            <div><strong>Name:</strong> {userData.Name}</div>
+            <div><strong>College Id:</strong> {userData.Email}</div>
+            <div><strong>Branch:</strong> {userData.Branch}</div>
+            <div><strong>Year:</strong> {userData.Year} </div>
+            <div><strong>UserName:</strong> {userData.userName}</div>
+            <div><strong>Contact:</strong> {userData.Mobile}</div>
+            <button className="edit-button">Edit</button>
+          </div>
+        </div>
+      ) : (
+        <Spinner />
+      )}
+    </div>
+  );
+};
 
-              {/* <div className="reputation">
+export default Dashboard;
+
+
+// Check if user is defined before destructure
+  // const userId = userFromLocalStorage && userFromLocalStorage.user ? userFromLocalStorage.user.userId : null;
+  // const [userData, setUserData] = useState(
+    //   {
+      //     userName: '',
+      //     Name: '',
+      //     Mobile: '',
+      //     Branch: '',
+      //     Email: '',
+      //     Year: '',
+      //   }
+      // );
+  {/* <div className="reputation">
                 <div className="reputation-info">
                   <strong>Reputation:</strong>
                   <div className="reputation-value">45</div>
@@ -76,31 +91,25 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div> */}
-            </div>
+              // </div>
 
-            <span>Created Posts</span>
-            {/* New Section: createdpost */}
-            <div className="createdpost">
-              <div className="post-container">Post 1</div>
-              <div className="post-container">Post 2</div>
-              <div className="post-container">Post 3</div>
-              <div className="post-container">Post 4</div>
-            </div>
+{/* <span>Created Posts</span> */}
+{/* New Section: createdpost */}
+{/* <div className="createdpost">
+  <div className="post-container">Post 1</div>
+  <div className="post-container">Post 2</div>
+  <div className="post-container">Post 3</div>
+  <div className="post-container">Post 4</div>
+</div> */}
 
-            {/* New Section: LikedProduct */}
-            <span>Liked Product</span>
-            <div className="LikedProduct">
-              <div className="product-container">Product 1</div>
-              <div className="product-container">Product 2</div>
-              <div className="product-container">Product 3</div>
-              <div className="product-container">Product 4</div>
-            </div>
-          </>
-      }
-
-    </div>
-  );
-};
+{/* New Section: LikedProduct */}
+{/* <span>Liked Product</span>
+<div className="LikedProduct">
+  <div className="product-container">Product 1</div>
+  <div className="product-container">Product 2</div>
+  <div className="product-container">Product 3</div>
+  <div className="product-container">Product 4</div>
+</div> */}
 
 // Export the component
-export default Dashboard;
+// export default Dashboard;

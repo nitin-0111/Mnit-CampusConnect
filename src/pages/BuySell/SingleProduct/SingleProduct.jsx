@@ -1,40 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './SingleProduct.css';
 import { useParams } from 'react-router-dom';
-import { BASE_URL } from '../../../env';
-import axios from 'axios';
+import customFetch from '../../../utils/axios';
+import { showErrorToast } from '../../Auth/Warning/ErrorToast';
+import { Button, Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
 
 const SingleProduct = () => {
   const { productId } = useParams();
-const [product, setProduct] = useState(null);
-const [selectedImage, setSelectedImage] = useState(null);
-const [userId, setUserId] = useState(null);
-const [user, setUser] = useState(null); // Initialize with null
-useEffect(() => {
-  const fetchProduct = async () => {
-    try {
-      const res1 = await axios.get(BASE_URL + `/Product/getProduct/${productId}`);
-      const fetchedProduct = res1.data; // Store fetched product data in a variable
-      setProduct(fetchedProduct);
-      setSelectedImage(fetchedProduct.images[0]);
-      setUserId(fetchedProduct.userId); // Use fetchedProduct.userId directly
-      console.log("product", fetchedProduct);
-      console.log("userId", fetchedProduct.userId); // Log fetchedProduct.userId
-
-      if (fetchedProduct.userId) {
-        const res2 = await axios.get(BASE_URL + `/auth/myInfo/${fetchedProduct.userId}`);
-        setUser(res2.data);
-        console.log("userinfo", res2.data);
-      }
-    } catch (error) {
-      // Handle error
-    }
-  };
-
-  fetchProduct();
-}, [productId]); // Add productId as a dependency to trigger useEffect when it changes
+  const [product, setProduct] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
 
+  const [user, setUser] = useState(null);
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -44,6 +21,36 @@ useEffect(() => {
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
+
+  const [openDialog, setOpenDialog] = useState(null);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res1 = await customFetch.get(`/Product/getProduct/${productId}`);
+        const fetchedProduct = res1.data; // Store fetched product data in a variable
+        setProduct(fetchedProduct);
+        setSelectedImage(fetchedProduct.images[0]);
+        setUser(fetchedProduct.ownerInfo);
+        console.log("product", fetchedProduct);
+      } catch (error) {
+        // Handle the error if needed
+        showErrorToast("Error in Fetching this Product")
+        console.error('Error fetching product:', error);
+      }
+    };
+
+    fetchProduct();
+  }, [productId]);
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+  const handleInterestClick = async () => {
+
+    //TODO: backend Beat version send Email to owner
+    setOpenDialog(true)
+   }
+
   return (
     <>
       {product ?
@@ -71,15 +78,24 @@ useEffect(() => {
               <h2>{product.title}</h2>
               <h2>₹ {product.price}</h2>
               <hr />
-              <h2>Contact Details</h2>
-               {user?<> <span> {user?.Mobile}</span>
-               <span> {user?.Email}</span>
-               </>:null}
-              <hr />
               <h2>Product Details:</h2>
               <p>
                 {product.description}
               </p>
+              <hr />
+              {user && <>
+                <Button variant="contained" color="primary" onClick={handleInterestClick}>
+                  Interested in Buy
+                </Button>
+
+                <Dialog open={openDialog} onClose={handleCloseDialog}>
+                  <DialogTitle>Contact Information</DialogTitle>
+                  <DialogContent>
+                    <Typography>Email: {user?.Email}</Typography>
+                    <Typography>Mobile: {user?.Mobile}</Typography>
+                  </DialogContent>
+                </Dialog>
+              </>}
             </div>
 
           </section>

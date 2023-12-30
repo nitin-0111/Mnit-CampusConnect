@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Box,
@@ -16,11 +16,11 @@ import Checkbox from "@mui/material/Checkbox";
 import "./SignUp.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { login, reset } from "../../redux/auth/authSlice";
-import Error from "./Warning/Error";
+// import Error from "./Warning/Error";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { showErrorToast, showSuccessToast } from "./Warning/ErrorToast";  // Import the showErrorToast function
+import { loginUser } from "../../features/user/userSlice";
 
 const LogIn = () => {
   const [viewPassword, setViewPassword] = useState(false);
@@ -35,10 +35,9 @@ const LogIn = () => {
     email: "",
     password: "",
   });
+  const {user:userInfo,isLoading}=useSelector((store)=>store.auth);
 
-  const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
+ 
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -83,8 +82,8 @@ const LogIn = () => {
       const userData = user;
 
       try {
-        dispatch(reset());
-        dispatch(login(userData));
+       
+        dispatch(loginUser(userData));
         showSuccessToast("Wait!! Server is Processing");
         setTimeout(() => {
           navigate("/products");
@@ -99,6 +98,8 @@ const LogIn = () => {
       showErrorToast('Login failed. Please check your credentials and try again.');
     }
   };
+
+ 
 
   //    Ye styling ke liye hi use kiya hai //
   const paperStyle = { padding: "30px 20px", width: 450, margin: "40px auto" };

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -12,13 +12,12 @@ import Dropzone from "./DropZone";
 import ProductDescription from "./Description";
 import axios from "axios";
 import { BASE_URL } from "../../env";
-import { getUserFromLocalStorage } from "../../redux/localStorage";
+import { useSelector } from "react-redux";
+import customFetch from "../../utils/axios";
 
 function AddProduct() {
-  const userFromLocalStorage = getUserFromLocalStorage();
-  // Check if user is defined before destructure
-  const userId = userFromLocalStorage && userFromLocalStorage.user ? userFromLocalStorage.user.userId : null;
-  
+  const { isLoading, user } = useSelector((store) => store.auth);
+  const userId = user.userId;
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [disable, setDisable] = useState(false);
@@ -72,8 +71,8 @@ function AddProduct() {
       formData.append("name", (Date.now() + file.name + index));
 
       try {
-        const response = await axios.post(
-          BASE_URL + "/Product/uploadImg",
+        const response = await customFetch.post(
+          "/Product/uploadImg",
           formData
         );
         // Assuming the backend returns an array of URL strings, push it to the results array
@@ -103,10 +102,13 @@ function AddProduct() {
       images: results,
       price: productData.price,
       category: productData.category,
-      userId
+      userId,
+      email,
+      mobile,
     };
+    console.log(product);
     try {
-      await axios.post(BASE_URL + "/Product/addProduct", product);
+      await customFetch.post( "/Product/addProduct", product);
       // tositfied...
       navigate("/products");
     } catch (err) {
@@ -212,7 +214,7 @@ const itemlist = [
   { label: "Other" },
 ];
 
-const paperStyle = { padding: "30px 20px", width: "90%", margin: "20px auto", border:"5px solid #3498db" };
+const paperStyle = { padding: "30px 20px", width: "90%", margin: "20px auto", border: "5px solid #3498db" };
 const avatarStyle = { backgroundColor: "#1bbd7e" };
 const TextFieldStyle = { margin: 7 };
 export default AddProduct;

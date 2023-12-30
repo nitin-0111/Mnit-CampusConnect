@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import {
   Avatar,
   Box,
@@ -11,9 +10,9 @@ import {
   Typography,
 } from "@mui/material";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { BASE_URL } from "../../env";
 import { toast } from "react-toastify";
 import { customToast } from "../../components/Toaster/CustomToast";
+import customFetch from "../../utils/axios";
 
 function ForgotPassword() {
   const [email, setEmail] = useState();
@@ -32,7 +31,7 @@ function ForgotPassword() {
     }
 
     try {
-      const { data } = await axios.post(BASE_URL + "/auth/forgot-password", {
+      const { data } = await customFetch.post(  "/auth/forgot-password", {
         email,
       });
       setDisable(false);

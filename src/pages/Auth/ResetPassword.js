@@ -1,11 +1,10 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { BASE_URL } from "../../env";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 import { Avatar, Box, Button, Container, Grid, Paper, TextField, Typography } from "@mui/material";
+import customFetch from "../../utils/axios";
 // import './ResetPassword.css'
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -41,7 +40,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      await axios.post(BASE_URL + "/auth/reset-password", {
+      await customFetch.post( "/auth/reset-password", {
         password: credential.password,
         token: query.get("token"),
         email: query.get("email"),

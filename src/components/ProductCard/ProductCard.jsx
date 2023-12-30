@@ -9,9 +9,10 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import { IconButton } from '@mui/material';
-import { getUserFromLocalStorage } from '../../redux/localStorage';
-import axios from 'axios';
-import { BASE_URL } from '../../env';
+
+
+import { useSelector } from 'react-redux';
+import customFetch from '../../utils/axios';
 
 
 const ZoomOnHover = styled('div')(({ theme }) => ({
@@ -27,11 +28,8 @@ const ZoomOnHover = styled('div')(({ theme }) => ({
 }));
 
 export default function ProductCard({ product }) {
-
-  const userFromLocalStorage = getUserFromLocalStorage();
-  // Check if user is defined before destructure
-  const userId = userFromLocalStorage && userFromLocalStorage.user ? userFromLocalStorage.user.userId : null;
-
+  const { isLoading, user } = useSelector((store) => store.auth);
+ const userId=user.userId;
   const [likeCount, setLikeCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   useEffect(() => {
@@ -41,7 +39,7 @@ export default function ProductCard({ product }) {
 
   const handleLikeClick = async() => {
     try {
-       await axios.patch(BASE_URL+`/Product/like/${product._id}`, { userId: userId });
+       await customFetch.patch(`/Product/like/${product._id}`, { userId: userId });
     } catch (err) {
         
     }
