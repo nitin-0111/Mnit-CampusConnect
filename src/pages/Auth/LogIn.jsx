@@ -87,7 +87,7 @@ const LogIn = () => {
         showSuccessToast("Wait!! Server is Processing");
         setTimeout(() => {
           navigate("/products");
-        }, 2000);
+        }, 3000);
       } catch (error) {
         showErrorToast("Oops! It seems the password entered is incorrect. Please double-check and try again.");
         showErrorToast("Or,may be our server is currently busy. Please try again later.")
