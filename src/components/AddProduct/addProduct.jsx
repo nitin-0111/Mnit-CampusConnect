@@ -103,8 +103,6 @@ function AddProduct() {
       price: productData.price,
       category: productData.category,
       userId,
-      email,
-      mobile,
     };
     console.log(product);
     try {
