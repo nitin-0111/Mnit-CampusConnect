@@ -27,8 +27,8 @@ const Filter = ({ categories, setCategories, sortBy, setSortBy }) => {
 
   return (
     <Box
-      flex={1}
-      minWidth={280}
+      // flex={1}
+      // minWidth={200}
       padding={2}
       borderTop={9}
       borderBottom={9}

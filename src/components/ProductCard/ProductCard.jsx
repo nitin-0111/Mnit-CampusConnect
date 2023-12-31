@@ -20,9 +20,9 @@ const ZoomOnHover = styled('div')(({ theme }) => ({
   '&:hover img': {
     transform: 'scale(1.2)',
     transition: 'transform 0.3s ease-in-out',
-    width: '110%',
-    minHeight:'350px',
-    height: '110%',
+    // width: '110%',
+    // minHeight:'350px',
+    // height: '110%',
     cursor: 'pointer',
   },
 }));

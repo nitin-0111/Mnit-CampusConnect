@@ -12,7 +12,6 @@ const Products = ({ productsData }) => {
   };
   return (
     <Box
-      flex={4}
       borderTop={9}
       borderRight={9}
       borderLeft={9}
