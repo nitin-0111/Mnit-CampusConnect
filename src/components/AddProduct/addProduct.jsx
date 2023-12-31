@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -10,13 +10,11 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 import Dropzone from "./DropZone";
 import ProductDescription from "./Description";
-import axios from "axios";
-import { BASE_URL } from "../../env";
 import { useSelector } from "react-redux";
 import customFetch from "../../utils/axios";
 
 function AddProduct() {
-  const { isLoading, user } = useSelector((store) => store.auth);
+  const {  user } = useSelector((store) => store.auth);
   const userId = user.userId;
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);

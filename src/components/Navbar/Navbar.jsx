@@ -25,7 +25,7 @@ import { logoutUser } from "../../features/user/userSlice";
 
 function ResponsiveAppBar() {
   const dispatch = useDispatch();
-  const { isLoading, user } = useSelector((store) => store.auth);
+  const { user } = useSelector((store) => store.auth);
   // ************************** Data fetching for NavbarLogo Icons **************************
  
   const userId = user.userId
@@ -85,7 +85,7 @@ function ResponsiveAppBar() {
             <img
               src={NavbarImage}
               alt="Navbar Logo"
-              onClick={() =>{navigate("/home")}}
+              onClick={() =>{navigate("/landing")}}
             />
             <Menu
               id="menu-appbar"
@@ -108,7 +108,7 @@ function ResponsiveAppBar() {
               <MenuItem
                 onClick={() => {
                   handleCloseNavMenu();
-                  navigate("/home");
+                  navigate("/landing");
                 }}
               >
                 <Typography textAlign="center">Home</Typography>
@@ -124,7 +124,7 @@ function ResponsiveAppBar() {
               <MenuItem
                 onClick={() => {
                   handleCloseNavMenu();
-                  navigate("/products");
+                  navigate("/");
                 }}
               >
                 <Typography textAlign="center">Products</Typography>
@@ -135,7 +135,7 @@ function ResponsiveAppBar() {
             <img
               src={NavbarImage}
               alt="Navbar Logo"
-              onClick={() =>{navigate("/home")}}
+              onClick={() =>{navigate("/landing")}}
               style={{
                 height: "48px",
                 width: "340px"
@@ -144,7 +144,7 @@ function ResponsiveAppBar() {
             {/* <Button
               onClick={() => {
                 handleCloseNavMenu();
-                navigate("/home");
+                navigate("/landing");
               }}
               sx={{ my: 2, color: "white", display: "block" }}
             >
