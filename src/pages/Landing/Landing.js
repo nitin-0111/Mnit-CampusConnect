@@ -23,17 +23,17 @@ const Landing = () => {
     { name: "Contributor 15", image: "/LandingPage/watch.png" },
     { name: "Contributor 16", image: "/LandingPage/w-speaker1.png" },
     { name: "Contributor 17", image: "/LandingPage/razor 1.png" },
-   
+
   ];
   const Rules = [
     { name: "rule 1", image: "/LandingPage/rules.png" },
   ];
 
   const contributorImages = [
-    { name: "Himanshu Omar", image: "/Avatars/Image 1.png" },
-    { name: "nsp", image: "/Avatars/Image 2.png" },
-    { name: "Nimish Toshniwal", image: "/Avatars/Image 4.png" },
-    { name: "Durgesh Saini", image: "/Avatars/Image 3.png" },
+    { name: "Himanshu Omar", image: "/Avatars/Image 1.png", linkedin: "https://www.linkedin.com/in/himanshu-omar-4a71b2214/" },
+    { name: "nsp", image: "/Avatars/Image 2.png", linkedin: "" },
+    { name: "Nimish Toshniwal", image: "/Avatars/Image 4.png", linkedin: "https://www.linkedin.com/in/nimish-toshniwal-717159213/" },
+    { name: "Durgesh Saini", image: "/Avatars/Image 3.png", linkedin: "https://www.linkedin.com/in/durgeshsaini/" },
   ];
 
   const handleImageChange = () => {
@@ -136,13 +136,18 @@ const Landing = () => {
           {contributorImages.map((contributor, index) => (
             <div className="contributor-item" key={index}>
               <div className="contributor-image-container">
-                <img
-                  src={`${process.env.PUBLIC_URL}${contributor.image}`}
-                  alt={contributor.name}
-                  className="contributor-image"
-                />
+                <a href={contributor.linkedin} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={`${process.env.PUBLIC_URL}${contributor.image}`}
+                    alt={contributor.name}
+                    className="contributor-image"
+                  />
+                </a>
               </div>
-              <p>{contributor.name}</p>
+              <p>
+                <a href={contributor.linkedin} target="_blank" rel="noopener noreferrer">{contributor.name}
+                </a>
+              </p>
             </div>
           ))}
         </div>
