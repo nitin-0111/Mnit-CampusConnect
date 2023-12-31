@@ -35,10 +35,10 @@ const Home = () => {
   return (
     <Box>
       <Stack direction="row" justifyContent={'space-betweeen'}>
-        <Box sx={{ position: 'sticky', top: '0' }}>
+        <Box sx={{ position: 'sticky', top: '0', flex:'1', minWidth:'calc(270px)' }}>
           <Filter categories={categories} setCategories={setCategories} sortBy={sortBy} setSortBy={setSortBy} />
         </Box>
-        <Box sx={{ maxHeight: 'calc(100vh - 70px)', overflowY: 'auto' }}>
+        <Box sx={{ maxHeight: 'calc(100vh - 70px)', overflowY: 'auto', flex:'5' }}>
           <Products productsData={productsData} />
         </Box>
       </Stack>

@@ -85,6 +85,7 @@ function ResponsiveAppBar() {
             <img
               src={NavbarImage}
               alt="Navbar Logo"
+              onClick={() =>{navigate("/home")}}
             />
             <Menu
               id="menu-appbar"
@@ -107,7 +108,7 @@ function ResponsiveAppBar() {
               <MenuItem
                 onClick={() => {
                   handleCloseNavMenu();
-                  navigate("/landing");
+                  navigate("/home");
                 }}
               >
                 <Typography textAlign="center">Home</Typography>
@@ -134,6 +135,7 @@ function ResponsiveAppBar() {
             <img
               src={NavbarImage}
               alt="Navbar Logo"
+              onClick={() =>{navigate("/home")}}
               style={{
                 height: "48px",
                 width: "340px"
@@ -142,7 +144,7 @@ function ResponsiveAppBar() {
             {/* <Button
               onClick={() => {
                 handleCloseNavMenu();
-                navigate("/landing");
+                navigate("/home");
               }}
               sx={{ my: 2, color: "white", display: "block" }}
             >

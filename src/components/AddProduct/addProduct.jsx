@@ -57,7 +57,7 @@ function AddProduct() {
       alert("Enter a valid price between 50 to 15000!");
       return;
     }
-    console.log("ProductData: ", productData);
+    // console.log("ProductData: ", productData);
     // 1. upload img
 
     if (!files?.length) {
@@ -86,14 +86,14 @@ function AddProduct() {
     let results;
     try {
       results = await Promise.all(uploadPromises);
-      console.log("Uploaded URLs: ", results);
+      // console.log("Uploaded URLs: ", results);
       // Do something with the array of URL strings returned by the backend
     } catch (error) {
       console.log("Error uploading files:", error);
       // Handle error if needed
     }
 
-    console.log("URLS", results);
+    // console.log("URLS", results);
     // 2. Product mongoDB
 
     const product = {
@@ -104,11 +104,11 @@ function AddProduct() {
       category: productData.category,
       userId,
     };
-    console.log(product);
+    // console.log(product);
     try {
       await customFetch.post( "/Product/addProduct", product);
       // tositfied...
-      navigate("/products");
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -199,6 +199,7 @@ function AddProduct() {
          { !disable? "Add Product": <CircularProgress color="inherit" />}
         </Button>
       </form>
+      <p>**Once this product is sold out please about it to us at <b>campusconnect.social@gmail.com</b> so that we could remove it from here.</p>
     </Paper>
   );
 }
