@@ -39,13 +39,13 @@ const Dashboard = () => {
             <ProfileAvatar fullName={userData.Name} />
           </div>
           <div className="profile-details">
-            <div><strong>Name:</strong> {userData.Name}</div>
-            <div><strong>College Id:</strong> {userData.Email}</div>
-            <div><strong>Branch:</strong> {userData.Branch}</div>
-            <div><strong>Year:</strong> {userData.Year} </div>
-            <div><strong>UserName:</strong> {userData.userName}</div>
-            <div><strong>Contact:</strong> {userData.Mobile}</div>
-            <button className="edit-button">Edit</button>
+            <div><strong className='str'>Name:</strong> {userData.Name}</div>
+            <div><strong className='str'>College Id:</strong> {userData.Email}</div>
+            <div><strong className='str'>Branch:</strong> {userData.Branch}</div>
+            <div><strong className='str'>Year:</strong> {userData.Year} </div>
+            <div><strong className='str'>UserName:</strong> {userData.userName}</div>
+            <div><strong className='str'>Contact:</strong> {userData.Mobile}</div>
+            {/* <button className="edit-button">Edit</button> */}
           </div>
         </div>
       ) : (
