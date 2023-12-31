@@ -1,6 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const getRandomColor = (char) => {
   const colors = [
@@ -13,6 +14,7 @@ const getRandomColor = (char) => {
 const ProfileAvatar = ({ fullName }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const isSmallScreen = useMediaQuery('(max-width:768px)');
 
   useEffect(() => {
     if (fullName) {
@@ -23,25 +25,28 @@ const ProfileAvatar = ({ fullName }) => {
   }, [fullName]);
 
   const handleImageError = (event) => {
-    
-    event.target.src = 'path-to-default-avatar-image'; 
+    event.target.src = 'path-to-default-avatar-image';
   };
 
+  const theme = createTheme(); // Create a theme to use the sx prop
+
   return (
-    <Avatar
-      style={{ backgroundColor: getRandomColor(firstName) }}
-      src={lastName ? `path-to-image-folder/${firstName}${lastName}.jpg` : null}
-      alt={lastName ? `${firstName}${lastName}` : firstName}
-      sx={{
-        width: 250, 
-        height: 250, 
-        fontSize: 80, 
-      }}
-      onError={handleImageError}
-    >
-      {firstName}
-      {lastName && lastName.charAt(0)}
-    </Avatar>
+    <ThemeProvider theme={theme}>
+      <Avatar
+        sx={{
+          backgroundColor: getRandomColor(firstName),
+          width: isSmallScreen ? '300px' : '450px',
+          height: isSmallScreen ? '300px' : '450px',
+          fontSize: isSmallScreen ? '110px' : '200px',
+        }}
+        src={lastName ? `path-to-image-folder/${firstName}${lastName}.jpg` : null}
+        alt={lastName ? `${firstName}${lastName}` : firstName}
+        onError={handleImageError}
+      >
+        {firstName}
+        {lastName && lastName.charAt(0)}
+      </Avatar>
+    </ThemeProvider>
   );
 };
 

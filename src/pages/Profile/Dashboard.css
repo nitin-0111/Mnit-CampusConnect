@@ -1,152 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfdfd;
+}
+
+.profile-container {
+  margin: 10px;
+  /* background: radial-gradient(circle, #94e4ea, #80bad6, #5879dd); */
+  background-color: #8ae2e2;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(29, 13, 13, 0.1);
+  display: flex;
+  align-items: flex-start;
+  min-height: 100vh; 
+}
+
+.profile-image {
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 80px;
+  margin-top: 30px;
+  border: 5px solid #000000;
+}
+
+.profile-details {
+  flex: 1;
+  overflow: hidden;
+  margin-top: 40px;
+  font-family:   'Libre Baskerville','Rubik Vinyl',sans-serif;
+  color: rgb(52, 50, 49);
+}
+.str{
+  font-family: 'Rubik Doodle Shadow',sans-serif;
+  color: #000000;
+}
+.profile-details div {
+  margin-bottom: 10px;
+  margin-left: 30px;
+  text-align: left;
+  font-size: 32px;
+}
+
+.edit-button {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.green-text {
+  color: green;
+}
+/* Media query for full screen layout */
+@media (max-width: 1200px) {
   .profile-container {
-    margin: 10px;
-    background-color: #c5e7ee;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(29, 13, 13, 0.1);
-    display: flex;
-    align-items: center;
-    height: 300px; /* Increased height */
-  }
-  
-  .profile-image {
-    width: 230px;
-    height: 230px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 200px; /* Adjusted margin */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .profile-details {
-    flex: 1;
-    overflow: hidden;
-  }
-  
-  .profile-details div {
-    margin-bottom: 10px;
-  }
-  .profile-details-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 10px;
-  }
-  
-  .profile-details-table td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .profile-details-table td:first-child {
-    width: 120px;
-    font-weight: bold;
-  }
-  
-  .edit-button {
-    padding: 8px 16px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .edit-button:hover {
-    background-color: #45a049;
-  }
-  
-  .edit-button {
-    padding: 8px 16px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .edit-button:hover {
-    background-color: #45a049;
-  }
-  
-  .reputation {
-    text-align: right;
-    margin-right: 70px;
-  }
-  
-  .reputation-info,
-  .contribution-info,
-  .batch-info {
-    font-size: 18px;
-    display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
-  
-  .reputation-value,
-  .contribution-value,
-  .batch-value {
-    margin-bottom: 5px;
+
+  .profile-image {
+    margin-right: 0;
+    margin-bottom: 20px;
   }
-  
-  .reputation-icon {
-    width: 70px; /* Adjusted size */
-    height: 100px;
+
+  .profile-details div {
+    font-size: 30px;
   }
-  
-  .extraAchievement {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+}
+
+/* Media query for smaller screens to adjust image size */
+@media (max-width: 768px) {
+  .profile-details div {
+    margin-left: 30px;
+    text-align: left; /* Adjust text alignment to left */
+    font-size: 24px;
   }
-  
-  .contribution-info,
-  .batch-info {
-    margin-right: 30px;
-    font-size: 14px; /* Adjusted font size */
-    margin-top: 10px; /* Added margin */
-  }
-  
-  .contribution-info div,
-  .batch-info div {
-    margin-bottom: 5px;
-  }
-  
-  /* New Styles */
-  .createdpost,
-  .LikedProduct {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+
+  .profile-image {
+    width: 300px;
     height: 300px;
-    background-color: #c5e7ee;
-    box-shadow: 0 0 10px rgba(29, 13, 13, 0.1);
   }
-  span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px; /* Adjust the font size as needed */
-    padding-top: 4px;
-  }
-  .post-container,
-  .product-container {
-    width: 200px; /* Match the width of the profile div */
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 20px;
-    margin: 10px;
-    background-color: rgb(122, 200, 33);
-    border-radius: 10px; /* Add rounded corners */
-  }
-  .post-container div,
-  .product-container div {
-    text-align: center; /* Center the text */
-  }
+}
+

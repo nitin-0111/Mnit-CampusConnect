@@ -10,7 +10,7 @@ const SingleProduct = () => {
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
 
-
+  const [userId,setUserId]=useState(null);
   const [user, setUser] = useState(null);
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -30,6 +30,8 @@ const SingleProduct = () => {
         const fetchedProduct = res1.data; // Store fetched product data in a variable
         setProduct(fetchedProduct);
         setSelectedImage(fetchedProduct.images[0]);
+        // fe.userId
+        setUserId(fetchProduct.userId);
         setUser(fetchedProduct.ownerInfo);
         console.log("product", fetchedProduct);
       } catch (error) {
@@ -83,6 +85,7 @@ const SingleProduct = () => {
                 {product.description}
               </p>
               <hr />
+              
               {user && <>
                 <Button variant="contained" color="primary" onClick={handleInterestClick}>
                   Interested To Buy

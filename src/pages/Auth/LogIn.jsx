@@ -35,9 +35,9 @@ const LogIn = () => {
     email: "",
     password: "",
   });
-  const {user:userInfo,isLoading}=useSelector((store)=>store.auth);
+  const { user: userInfo, isLoading } = useSelector((store) => store.auth);
 
- 
+
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -76,18 +76,18 @@ const LogIn = () => {
   };
   // *********  **********  *********** *********** *************** *****************  //
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
       const userData = user;
 
       try {
-       
-        dispatch(loginUser(userData));
-        showSuccessToast("Wait!! Server is Processing");
-        setTimeout(() => {
-          navigate("/");
-        }, 3000);
+
+         showSuccessToast("Wait!! Server is Processing");
+        await dispatch(loginUser(userData));
+
+        navigate("/");
+
       } catch (error) {
         showErrorToast("Oops! It seems the password entered is incorrect. Please double-check and try again.");
         showErrorToast("Or,may be our server is currently busy. Please try again later.")
@@ -99,7 +99,7 @@ const LogIn = () => {
     }
   };
 
- 
+
 
   //    Ye styling ke liye hi use kiya hai //
   const paperStyle = { padding: "30px 20px", width: 450, margin: "40px auto" };

@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -10,8 +10,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 import Dropzone from "./DropZone";
 import ProductDescription from "./Description";
-import axios from "axios";
-import { BASE_URL } from "../../env";
+
 import { useSelector } from "react-redux";
 import customFetch from "../../utils/axios";
 
@@ -57,7 +56,7 @@ function AddProduct() {
       alert("Enter a valid price between 50 to 15000!");
       return;
     }
-    console.log("ProductData: ", productData);
+    // console.log("ProductData: ", productData);
     // 1. upload img
 
     if (!files?.length) {
@@ -108,7 +107,7 @@ function AddProduct() {
     try {
       await customFetch.post( "/Product/addProduct", product);
       // tositfied...
-      navigate("/products");
+      navigate("/");
     } catch (err) {
       console.log(err);
     }

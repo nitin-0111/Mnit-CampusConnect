@@ -47,6 +47,8 @@ const customToast = (type, { msg, time = 3000, pos = "top-right",theme="colored"
         progress: undefined,
         theme: theme,
       });
+    case "login":
+     return toast.su
     default:
       return toast(msg, {
         position: pos,
