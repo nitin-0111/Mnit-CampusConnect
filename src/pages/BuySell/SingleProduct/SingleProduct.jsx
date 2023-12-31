@@ -9,7 +9,6 @@ const SingleProduct = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-
   const [userId,setUserId]=useState(null);
   const [user, setUser] = useState(null);
   useEffect(() => {

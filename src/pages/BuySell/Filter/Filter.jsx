@@ -73,9 +73,12 @@ const Filter = ({ categories, setCategories, sortBy, setSortBy }) => {
             onChange={handleSortByChange}
             name="radio-buttons-group"
           >
-            <FormControlLabel value="popularity" control={<Radio color="primary" />} label="Popularity" />
+            <FormControlLabel value="popularity" control={<Radio color="primary" />} label="Popularity"/>
+            <h3>Popularity</h3>
             <FormControlLabel value="pricelowtohigh" control={<Radio color="primary" />} label="Price-Low to High" />
+            <h3>Price-Low to High</h3>
             <FormControlLabel value="pricehightolow" control={<Radio color="primary" />} label="Price-High to Low" />
+            <h3>Price-High to Low</h3>
           </RadioGroup>
         </FormControl>
       </Stack>
