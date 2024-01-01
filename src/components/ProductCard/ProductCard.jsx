@@ -13,6 +13,7 @@ import { IconButton } from '@mui/material';
 
 import { useSelector } from 'react-redux';
 import customFetch from '../../utils/axios';
+import { customToast } from '../Toaster/CustomToast';
 
 
 const ZoomOnHover = styled('div')(({ theme }) => ({
@@ -29,7 +30,7 @@ const ZoomOnHover = styled('div')(({ theme }) => ({
 
 export default function ProductCard({ product }) {
   const { isLoading, user } = useSelector((store) => store.auth);
-  const userId = user.userId;
+  const userId = user?.userId;
   const [likeCount, setLikeCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   useEffect(() => {
@@ -47,7 +48,15 @@ export default function ProductCard({ product }) {
     setIsLiked(!isLiked);
   };
 
+  const handleSingleProductClick = () => {
+    if (!userId) {
+      customToast('warning', { msg: 'Please Login !!!' });
+    }
+    setTimeout(() => {
+      return window.location.href = `/singleProduct/${product._id}`
 
+    }, 2000);
+  }
   return (
     <Card sx={{
       maxWidth: 350, minWidth: 350, bgcolor: "#fff", border: 1, borderColor: "gray", transition: "box-shadow 0.3s ease-in-out",
@@ -68,10 +77,10 @@ export default function ProductCard({ product }) {
             textAlign: 'center',
             margin: 'auto',
           }}
-          onClick={() => window.location.href = `/singleProduct/${product._id}`}
+          onClick={handleSingleProductClick}
         />
       </ZoomOnHover>
-      <CardHeader title={product.title} style={{ cursor: 'pointer' }} onClick={() => window.location.href = `/singleProduct/${product._id}`} />
+      <CardHeader title={product.title} style={{ cursor: 'pointer' }} onClick={handleSingleProductClick} />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {product.description.length > 125 ? `${product.description.slice(0, 125)} ...` : `${product.description}`}
@@ -79,10 +88,15 @@ export default function ProductCard({ product }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing sx={{ justifyContent: 'space-between' }}>
-        <IconButton onClick={handleLikeClick} color={isLiked ? 'primary' : 'default'}>
+        {userId ? <IconButton onClick={handleLikeClick} color={isLiked ? 'primary' : 'default'}>
           {isLiked ? <Favorite /> : <FavoriteBorder />}
           {likeCount > 0 && likeCount}
-        </IconButton>
+        </IconButton> :
+          <IconButton color={'default'}>
+            <FavoriteBorder />
+            {likeCount > 0 && likeCount}
+          </IconButton>
+        }
         <Typography variant="h5" color="text.secondary">
           Price: ₹{parseInt(product.price)}
         </Typography>
