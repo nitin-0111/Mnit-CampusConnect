@@ -105,7 +105,7 @@ function AddProduct() {
     };
     // console.log(product);
     try {
-      await customFetch.post( "/Product/addProduct", product);
+      await customFetch.post("/Product/addProduct", product);
       // tositfied...
       navigate("/");
     } catch (err) {
@@ -194,9 +194,11 @@ function AddProduct() {
           color="success"
           disabled={disable}
           type="submit"
+          style={{ width: "50vh" }}
         >
-         { !disable? "Add Product": <CircularProgress color="inherit" />}
+          {!disable ? "Add Product" : <CircularProgress color="inherit"  size={24}/>}
         </Button>
+
       </form>
       <p>**Once this product is sold out please about it to us at <b>campusconnect.social@gmail.com</b> so that we could remove it from here.</p>
     </Paper>
