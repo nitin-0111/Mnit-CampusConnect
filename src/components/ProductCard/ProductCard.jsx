@@ -16,6 +16,7 @@ import customFetch from '../../utils/axios';
 import { customToast } from '../Toaster/CustomToast';
 
 
+
 const ZoomOnHover = styled('div')(({ theme }) => ({
   overflow: 'hidden',
   '&:hover img': {
@@ -49,18 +50,17 @@ export default function ProductCard({ product }) {
     setIsLiked(!isLiked);
   };
 
-  const handleSingleProductClick = () => {
+  const handleSingleProductClick = async () => {
     if (!userId) {
-      customToast('warning', { msg: 'Please Login !!!' });
+      customToast('warning', { msg: 'Please Login !!! ' });
       setTimeout(() => {
-        return window.location.href = `/singleProduct/${product._id}`
-
+        window.location.href = `/singleProduct/${product._id}`;
       }, 2000);
     } else {
-      return window.location.href = `/singleProduct/${product._id}`
+      window.location.href = `/singleProduct/${product._id}`;
     }
+  };
 
-  }
   return (
     <Card sx={{
       maxWidth: isSmallScreen ? 250 : 350,
@@ -92,7 +92,7 @@ export default function ProductCard({ product }) {
       </ZoomOnHover>
       <CardHeader title={product.title.length > 20 ? `${product.title.slice(0, 20)}` : `${product.title}`}
         style={{ cursor: 'pointer' }}
-        onClick={() => window.location.href = `/singleProduct/${product._id}`} />
+        onClick={handleSingleProductClick} />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {product.description.length > 125 ? `${product.description.slice(0, 125)} ...` : `${product.description}`}
@@ -103,7 +103,7 @@ export default function ProductCard({ product }) {
           {isLiked ? <Favorite /> : <FavoriteBorder />}
           {likeCount > 0 && likeCount}
         </IconButton> :
-          <IconButton color={'default'}>
+          <IconButton color={'default'} onClick={handleSingleProductClick}>
             <FavoriteBorder />
             {likeCount > 0 && likeCount}
           </IconButton>
