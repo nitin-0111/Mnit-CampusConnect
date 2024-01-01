@@ -219,52 +219,52 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-             
 
-              {user ?(
-              
-              <>
-               <MenuItem
-                onClick={() => {
-                  handleCloseUserMenu();
-                  navigate("/dashboard");
-                }}
-              >
-                <DashboardIcon />
-                <Typography textAlign="center">DashBoard</Typography>
-              </MenuItem>
-              <MenuItem
+
+              {user ? (
+
+                <>
+                  <MenuItem
+                    onClick={() => {
+                      handleCloseUserMenu();
+                      navigate("/dashboard");
+                    }}
+                  >
+                    <DashboardIcon />
+                    <Typography textAlign="center">DashBoard</Typography>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      handleCloseUserMenu();
+                      handleLogout();
+                      navigate("/landing")
+                    }}
+                  >
+                    <LogoutOutlinedIcon />
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
+                </>
+              ) : (<>
+                <MenuItem
                   onClick={() => {
-                    handleCloseUserMenu();
-                    handleLogout();
-                    navigate("/landing")
+                    navigate("/signup");
                   }}
                 >
-                  <LogoutOutlinedIcon />
-                  <Typography textAlign="center">Logout</Typography>
+                  <AppRegistrationSharpIcon />
+                  <Typography textAlign="center">Register</Typography>
                 </MenuItem>
-              </>
-             ): (<>
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/signup");
-                    }}
-                  >
-                    <AppRegistrationSharpIcon />
-                    <Typography textAlign="center">Register</Typography>
-                  </MenuItem>
 
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/login");
-                    }}
-                  >
-                    <LoginOutlinedIcon />
-                    <Typography textAlign="center">Login</Typography>
-                  </MenuItem>
-                </>)}
-              
-              
+                <MenuItem
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  <LoginOutlinedIcon />
+                  <Typography textAlign="center">Login</Typography>
+                </MenuItem>
+              </>)}
+
+
             </Menu>
           </Box>
         </Toolbar>
