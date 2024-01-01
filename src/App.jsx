@@ -26,10 +26,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route  path="/" element={<ProtectedRoute> <Home /> </ProtectedRoute>}>
+        <Route path="/" element={<Home />}>
           <Route index path="/" element={<Products />} />
+        </Route>
+
+
+        <Route path="/" element={<ProtectedRoute> <Home /> </ProtectedRoute>}>
           <Route path="addProduct" element={<AddProduct />} />
-          
+
           <Route path="singleProduct" element={<SingleProduct />} />
           <Route path="singleProduct/:productId" element={<SingleProduct />} />
           <Route path="dashboard" element={<Dashboard />} />
@@ -45,7 +49,7 @@ function App() {
         <Route path="/user/forget-password" element={<ForgotPassword />} />
         <Route path="/user/reset-password" element={<ResetPassword />} />
       </Routes>
-    {Toast()}
+      {Toast()}
     </BrowserRouter>
   );
 }

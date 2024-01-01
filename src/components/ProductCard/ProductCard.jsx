@@ -13,6 +13,7 @@ import { IconButton, useMediaQuery } from '@mui/material';
 
 import { useSelector } from 'react-redux';
 import customFetch from '../../utils/axios';
+import { customToast } from '../Toaster/CustomToast';
 
 
 const ZoomOnHover = styled('div')(({ theme }) => ({
@@ -29,7 +30,7 @@ const ZoomOnHover = styled('div')(({ theme }) => ({
 
 export default function ProductCard({ product }) {
   const { isLoading, user } = useSelector((store) => store.auth);
-  const userId = user.userId;
+  const userId = user?.userId;
   const [likeCount, setLikeCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const isSmallScreen = useMediaQuery('(max-width:650px)');
@@ -48,14 +49,25 @@ export default function ProductCard({ product }) {
     setIsLiked(!isLiked);
   };
 
+  const handleSingleProductClick = () => {
+    if (!userId) {
+      customToast('warning', { msg: 'Please Login !!!' });
+      setTimeout(() => {
+        return window.location.href = `/singleProduct/${product._id}`
 
+      }, 2000);
+    } else {
+      return window.location.href = `/singleProduct/${product._id}`
+    }
+
+  }
   return (
     <Card sx={{
-      maxWidth: isSmallScreen ? 250:350, 
-      minWidth: isSmallScreen ? 250:350, 
-      bgcolor: "#fff", 
-      border: 1, 
-      borderColor: "gray", 
+      maxWidth: isSmallScreen ? 250 : 350,
+      minWidth: isSmallScreen ? 250 : 350,
+      bgcolor: "#fff",
+      border: 1,
+      borderColor: "gray",
       transition: "box-shadow 0.3s ease-in-out",
       '&:hover': {
         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",
@@ -75,7 +87,7 @@ export default function ProductCard({ product }) {
             textAlign: 'center',
             margin: 'auto',
           }}
-          onClick={() => window.location.href = `/singleProduct/${product._id}`}
+          onClick={handleSingleProductClick}
         />
       </ZoomOnHover>
       <CardHeader title={product.title.length > 20 ? `${product.title.slice(0, 20)}` : `${product.title}`}
@@ -87,10 +99,15 @@ export default function ProductCard({ product }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing sx={{ justifyContent: 'space-between' }}>
-        <IconButton onClick={handleLikeClick} color={isLiked ? 'primary' : 'default'}>
+        {userId ? <IconButton onClick={handleLikeClick} color={isLiked ? 'primary' : 'default'}>
           {isLiked ? <Favorite /> : <FavoriteBorder />}
           {likeCount > 0 && likeCount}
-        </IconButton>
+        </IconButton> :
+          <IconButton color={'default'}>
+            <FavoriteBorder />
+            {likeCount > 0 && likeCount}
+          </IconButton>
+        }
         <Typography variant="h5" color="text.secondary">
           Price: ₹{parseInt(product.price)}
         </Typography>
