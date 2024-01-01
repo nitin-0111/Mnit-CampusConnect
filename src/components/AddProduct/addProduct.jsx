@@ -193,7 +193,7 @@ function AddProduct() {
           color="success"
           disabled={disable}
           type="submit"
-          style={{ width: "50vh" }}
+          style={{ width: "45vh" }}
         >
           {!disable ? "Add Product" : <CircularProgress color="inherit"  size={24}/>}
         </Button>
