@@ -13,13 +13,10 @@ import {
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import CancelIcon from '@mui/icons-material/Cancel';
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Autocomplete from "@mui/material/Autocomplete";
 import "./SignUp.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Error from "./Warning/Error";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { showErrorToast, showSuccessToast } from "./Warning/ErrorToast";
@@ -299,7 +296,7 @@ const SignUp = () => {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={togglePasswordVisibility} edge="end">
-                    {!viewPassword ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+                    {viewPassword ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -316,12 +313,6 @@ const SignUp = () => {
             onChange={handleInputs}
             error={!!errors.confirmPassword}
             helperText={errors.confirmPassword}
-          />
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
-            fullWidth
-            label="I want to recieve latest updates"
-            className="notify"
           />
           <br />
           <Box display="flex" flexDirection="column" alignItems="center"  >

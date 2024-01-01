@@ -103,7 +103,11 @@ const Landing = () => {
           <div className="content-wrapper">
             <div className="rules-list">
               <ul style={{ listStyleType: 'disc' }}>
-                <li className="rule">This site is only for our college so make sure you register using the MNIT mail Id only.
+                <li className="rule">
+                  For the best experience, use a <b>computer/laptop or switch to desktop mode</b> on mobile.
+                </li>
+                <hr />
+                <li className="rule">This site is only for our college so make sure you <b>register using the MNIT mail Id</b> only.
                 </li>
                 <hr />
                 <li className="rule">
@@ -111,15 +115,11 @@ const Landing = () => {
                 </li>
                 <hr />
                 <li className="rule">
-                  Once registered, please check your email for the verification of the registered mail Id.
+                  Once registered, please <b>check your email for the verification</b> of the registered mail Id.
                 </li>
                 <hr />
                 <li className="rule">
                   Do not post any irrelevant post else the user may get deleted.
-                </li>
-                <hr />
-                <li className="rule">
-                  For the best experience, use a computer or switch to desktop mode on mobile.
                 </li>
                 <hr />
                 <li className="rule">

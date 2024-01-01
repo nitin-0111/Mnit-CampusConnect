@@ -76,10 +76,10 @@ const SingleProduct = () => {
               </div>
             </div>
             <div className="single-pro-details">
-              <h2>{product.title}</h2>
+              <p><b>{product.title}</b></p>
               <h2>₹ {product.price}</h2>
               <hr />
-              <h2>Product Details:</h2>
+              <p><b>Product Details:</b></p>
               <p>
                 {product.description}
               </p>

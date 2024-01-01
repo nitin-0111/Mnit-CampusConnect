@@ -141,7 +141,7 @@ function ResponsiveAppBar() {
                 width: "340px"
               }}
             />
-            {/* <Button
+            <Button
               onClick={() => {
                 handleCloseNavMenu();
                 navigate("/landing");
@@ -149,7 +149,7 @@ function ResponsiveAppBar() {
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Home
-            </Button> */}
+            </Button>
             <Button
               onClick={() => {
                 handleCloseNavMenu();

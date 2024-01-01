@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, useMediaQuery } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -16,7 +16,7 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const Filter = ({ categories, setCategories, sortBy, setSortBy }) => {
-
+  const isSmallScreen = useMediaQuery('(max-width:650px)');
   const handleCategoryChange = (event, value) => {
     setCategories(value);
   };
@@ -34,6 +34,10 @@ const Filter = ({ categories, setCategories, sortBy, setSortBy }) => {
       borderBottom={9}
       borderLeft={9}
       borderColor="lightgrey"
+      sx={{
+        minWidth:isSmallScreen&&'300px',
+        border:isSmallScreen&&'none',
+      }}
     >
       <Stack direction="column">
         <h2

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Box,
@@ -11,8 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import "./SignUp.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -157,7 +155,7 @@ const LogIn = () => {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={togglePasswordVisibility} edge="end">
-                    {!viewPassword ? (
+                    {viewPassword ? (
                       <RemoveRedEyeIcon />
                     ) : (
                       <VisibilityOffIcon />
@@ -166,12 +164,6 @@ const LogIn = () => {
                 </InputAdornment>
               ),
             }}
-          />
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
-            fullWidth
-            label="I want to recieve latest updates"
-            className="notify"
           />
           <br />
           <Box display="flex" flexDirection="column" alignItems="center">
