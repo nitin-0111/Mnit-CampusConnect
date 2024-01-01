@@ -36,7 +36,7 @@ function App() {
 
         </Route>
 
-        <Route path="/home" element={<Landing />} />
+        <Route path="/landing" element={<Landing />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<LogIn />} />
         <Route path="/user/verify-email" element={<VerifyEmail />} />
