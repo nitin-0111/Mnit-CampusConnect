@@ -16,8 +16,7 @@ import { useNavigate } from "react-router-dom";
 import NavbarImage from "../../assets/img/CampusConnect-logos/CampusConnect-logos_white.png";
 import NavbarAvatar from "../Navbar/NavbarAvatar";
 import "../Navbar/Navbar.css";
-
-import DashboardIcon from "@material-ui/icons/Dashboard";
+import DashboardIcon from '@mui/icons-material/Dashboard';
 // import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 import AppRegistrationSharpIcon from "@mui/icons-material/AppRegistrationSharp";
