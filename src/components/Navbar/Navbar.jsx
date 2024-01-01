@@ -27,26 +27,23 @@ function ResponsiveAppBar() {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.auth);
   // ************************** Data fetching for NavbarLogo Icons **************************
-
-  const userId = user?.userId
+ 
+  const userId = user.userId
   const [userData, setUserData] = useState({
     Name: "",
   });
   const [error, setError] = useState(null);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(BASE_URL + `/auth/myInfo/${userId}`);
-          setUserData(response.data);
-        } catch (error) {
-          setError(error);
-        }
-      };
-      if(userId)
-      fetchData();
-    }, [userId]);
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(BASE_URL + `/auth/myInfo/${userId}`);
+        setUserData(response.data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    fetchData();
+  }, [userId]);
   // *******************************************************************************************
 
   const handleLogout = () => {
@@ -71,10 +68,10 @@ function ResponsiveAppBar() {
   };
   const navigate = useNavigate();
   return (
-    <AppBar position="static" sx={{ paddingTop: 0, paddingBottom: 0, border: 0 }}>
+    <AppBar position="static" sx={{paddingTop:0, paddingBottom:0, border:0}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, alignItems: "center" }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, alignItems:"center" }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -88,7 +85,7 @@ function ResponsiveAppBar() {
             <img
               src={NavbarImage}
               alt="Navbar Logo"
-              onClick={() => { navigate("/landing") }}
+              onClick={() =>{navigate("/landing")}}
             />
             <Menu
               id="menu-appbar"
@@ -134,11 +131,11 @@ function ResponsiveAppBar() {
               </MenuItem>
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, alignItems: "center" }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, alignItems:"center" }}>
             <img
               src={NavbarImage}
               alt="Navbar Logo"
-              onClick={() => { navigate("/landing") }}
+              onClick={() =>{navigate("/landing")}}
               style={{
                 height: "48px",
                 width: "340px"
