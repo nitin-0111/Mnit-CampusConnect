@@ -84,6 +84,13 @@ const Landing = () => {
                 Sign Up
               </Button>
             </Link>
+                  <div className="button-gap">
+              <Link to="/">
+                <Button variant="contained" color="primary">
+                  Home (Guest User)
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="images">
